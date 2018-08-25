@@ -1,0 +1,32 @@
+{
+  "name": "object-mapper",
+  "version": "1.0.0",
+  "description": "A simple framework to easily transform your data to a useful format",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "lint": "eslint src",
+    "lint-fix": "eslint src --fix",
+    "lint-diff": "git diff --name-only --cached --relative | grep \\.js$ | xargs eslint",
+    "precommit": "npm run lint-diff"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damfinkel/object-mapper.git"
+  },
+  "author": "Damián Finkelstein <damfinkel@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/damfinkel/object-mapper/issues"
+  },
+  "homepage": "https://github.com/damfinkel/object-mapper#readme",
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "eslint": "^4.10.0",
+    "husky": "^0.14.3",
+    "prettier": "^1.7.4",
+    "prettier-eslint": "^8.2.1",
+    "eslint-plugin-prettier": "^2.3.1"
+  }
+}
