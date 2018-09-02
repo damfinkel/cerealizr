@@ -6,11 +6,11 @@ describe('setValue', () => {
     id: 1
   };
 
-  const mapper = {
+  const descriptor = {
     id: setValue({ someKey: 100, someOtherKey: 'aString' })
   };
 
-  const serializer = new Serializer(mapper);
+  const serializer = new Serializer({ descriptor });
 
   it('sets a hardcoded value as the id', () => {
     expect(serializer.serialize(someObject).id).toEqual({ someKey: 100, someOtherKey: 'aString' });
@@ -23,11 +23,11 @@ describe('setCamelcaseKey', () => {
     other_key: 'other value'
   };
 
-  const mapper = {
+  const descriptor = {
     snake_case_key: setCamelcaseKey(value => value + 100)
   };
 
-  const serializer = new Serializer(mapper);
+  const serializer = new Serializer({ descriptor });
 
   it('transform key to camelcase and transforms the value with the given function', () => {
     expect(serializer.serialize(someObject).snakeCaseKey).toBe(101);

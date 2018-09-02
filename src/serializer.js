@@ -14,11 +14,27 @@
 class SerializerError extends Error {}
 
 class Serializer {
-  constructor(descriptor) {
+  constructor({ descriptor, defaultTransform = (key, value) => ({ [key]: value }), mapAllValues = false }) {
     this.descriptor = descriptor;
+    this.mapAllValues = mapAllValues;
+    this.defaultTransform = defaultTransform;
   }
 
-  transformWithFunction(object, newField) {
+  checkValidValue(field) {
+    if (field === null || typeof field !== 'object' || Object.keys(field).length > 1) {
+      throw new SerializerError(
+        'Serializer mapper funciton values must return an non null object with only one key'
+      );
+    }
+  }
+
+  getTransformedField(transform, key, value) {
+    return transform(key, value);
+  }
+
+  transformWithFunction(object, transform, key, value) {
+    const newField = this.getTransformedField(transform, key, value);
+    this.checkValidValue(newField);
     return { ...object, ...newField };
   }
 
@@ -27,18 +43,21 @@ class Serializer {
   }
 
   serialize(object) {
-    return Object.keys(this.descriptor).reduce((accumulator, key) => {
+    return Object.keys(object).reduce((accumulator, key) => {
       const value = object[key];
-      const transform = this.descriptor[key];
+      const transform = this.descriptor && this.descriptor[key];
+
+      // If no transform is given, it'll only return the key when this.mapAllValues = true
+      if (transform === undefined) {
+        if (this.mapAllValues) {
+          return this.transformWithFunction(accumulator, this.defaultTransform, key, value);
+        } else {
+          return accumulator;
+        }
+      }
 
       if (typeof transform === 'function') {
-        const newField = transform(key, value);
-        if (newField === null || typeof newField !== 'object' || Object.keys(newField).length > 1) {
-          throw new SerializerError(
-            'Serializer mapper funciton values must return an non null object with only one key'
-          );
-        }
-        return this.transformWithFunction(accumulator, newField);
+        return this.transformWithFunction(accumulator, transform, key, value);
       } else if (typeof transform === 'string') {
         this.transformWithString(accumulator, transform, value);
       } else {
