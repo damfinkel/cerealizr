@@ -1,13 +1,9 @@
-const { Serializer } = require('./serializer');
+const KeySerializer = require('./keySerializer');
 const camelcase = require('lodash.camelcase');
 
-class CamelcaseSerializer extends Serializer {
+class CamelcaseSerializer extends KeySerializer {
   constructor({ descriptor } = {}) {
-    super({ descriptor, mapAllValues: true, defaultTransform: value => value });
-  }
-
-  getTransformedField(transform, key, value) {
-    return { [camelcase(key)]: transform(value) };
+    super({ descriptor, keyTransform: camelcase });
   }
 }
 

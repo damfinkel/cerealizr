@@ -1,16 +1,3 @@
-// Example usage:
-// const myObject = {
-//  some_key: 4,
-//  key_two: "example text"
-// }
-// const mapper = {
-//   some_key: 'someOtherKey',
-//   key_two: (key, value) => ({ `${key_two}_2`: value + value })
-// };
-//
-// const serializer = new Serializer(mapper);
-// serializer.map(myObject);
-
 class SerializerError extends Error {}
 
 class Serializer {
