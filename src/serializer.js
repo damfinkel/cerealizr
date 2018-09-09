@@ -22,7 +22,7 @@ class Serializer {
   transformWithFunction(object, transform, key, value) {
     const newField = this.getTransformedField(transform, key, value);
     this.checkValidValue(newField);
-    return { ...object, ...newField };
+    return Object.assign({}, object, newField);
   }
 
   transformWithString(object, string, value) {
