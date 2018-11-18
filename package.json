@@ -1,5 +1,5 @@
 {
-  "name": "object-mapper",
+  "name": "cerealize",
   "version": "1.0.0",
   "description": "A simple framework to easily transform your data to a useful format",
   "main": "index.js",
