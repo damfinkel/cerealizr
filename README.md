@@ -1,21 +1,21 @@
-# cerealize
+# cerealizr
 
 A simple library to transform objects.
 
 # Installation
 
 ```
-$ npm i cerealize # or yarn add cerealize
+$ npm i cerealizr # or yarn add cerealizr
 ```
 
 # What is it good for?
 
-Cerealize provides a Serializer class which allows you to transform objects into whatever you want. It's specially useful for transforming API requests or responses into nicely formatted and useful data to use in your app.
+Cerealizr provides a Serializer class which allows you to transform objects into whatever you want. It's specially useful for transforming API requests or responses into nicely formatted and useful data to use in your app.
 
 # Basic Usage
 
 ```
-const { Serializer } = require('cerealize');
+const Serializer = require('cerealizr');
 
 const someObject = {
   id: 1,
@@ -67,7 +67,7 @@ For the time being, they only receive a `descriptor` parameter and it always map
 Also, the function used as values in the descriptor can only map values, as the key tranform is already defined:
 
 ```
-const { CamelcaseSerializer } = require('cerealize');
+const { CamelcaseSerializer } = require('cerealizr');
 
 const someObject = {
   id: 1,

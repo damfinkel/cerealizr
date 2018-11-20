@@ -1,4 +1,4 @@
-class SerializerError extends Error {}
+const SerializerError = require('./serializerError');
 
 class Serializer {
   constructor({ descriptor, defaultTransform = (key, value) => ({ [key]: value }), mapAllValues = false }) {
@@ -56,5 +56,4 @@ class Serializer {
   }
 }
 
-module.exports.Serializer = Serializer;
-module.exports.SerializerError = SerializerError;
+module.exports = Serializer;

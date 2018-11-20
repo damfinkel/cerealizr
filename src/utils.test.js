@@ -1,5 +1,5 @@
 const { setValue, setCamelcaseKey } = require('./utils');
-const { Serializer } = require('./serializer');
+const Serializer = require('./serializer');
 
 describe('setValue', () => {
   const someObject = {

@@ -1,4 +1,5 @@
-const { Serializer, SerializerError } = require('./serializer');
+const Serializer = require('./serializer');
+const SerializerError = require('./serializerError');
 
 describe('Serializer', () => {
   const someObject = {

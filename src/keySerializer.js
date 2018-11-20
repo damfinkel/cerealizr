@@ -1,4 +1,4 @@
-const { Serializer } = require('./serializer');
+const Serializer = require('./serializer');
 
 class KeySerializer extends Serializer {
   constructor({ descriptor, keyTransform = key => key } = { descriptor: null, keyTransform: key => key }) {
