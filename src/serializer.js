@@ -10,7 +10,7 @@ class Serializer {
   checkValidValue(field) {
     if (field === null || typeof field !== 'object' || Object.keys(field).length > 1) {
       throw new SerializerError(
-        'Serializer mapper funciton values must return an non null object with only one key'
+        'Serializer mapper function values must return an non null object with only one key'
       );
     }
   }
@@ -30,6 +30,10 @@ class Serializer {
   }
 
   serialize(object) {
+    if (typeof object !== 'object') {
+      throw new SerializerError('Value to serialize must be an object');
+    }
+
     return Object.keys(object).reduce((accumulator, key) => {
       const value = object[key];
       const transform = this.descriptor && this.descriptor[key];

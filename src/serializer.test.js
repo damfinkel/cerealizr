@@ -123,4 +123,18 @@ describe('Serializer', () => {
       expect(() => serializer.serialize(someObject)).toThrow(SerializerError);
     });
   });
+
+  describe('when value to be serialized is not an object', () => {
+    const value = 10;
+
+    const descriptor = {
+      id: () => ({ key1: 10, key2: 20 })
+    };
+
+    const serializer = new Serializer({ descriptor });
+
+    it('throws a SerializerError', () => {
+      expect(() => serializer.serialize(value)).toThrow(SerializerError);
+    });
+  });
 });
