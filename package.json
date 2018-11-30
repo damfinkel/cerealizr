@@ -2,7 +2,7 @@
   "name": "cerealizr",
   "version": "0.3.1",
   "description": "A simple framework to easily transform your data to a useful format",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest",
     "lint": "eslint src",
