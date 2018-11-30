@@ -7,6 +7,9 @@ class KeySerializer extends Serializer {
   }
 
   getTransformedField(transform, key, value) {
+    if (typeof value === 'object' && value.constructor !== Array) {
+      return { [this.keyTransform(key)]: this.serialize(value) };
+    }
     return { [this.keyTransform(key)]: transform(value) };
   }
 }

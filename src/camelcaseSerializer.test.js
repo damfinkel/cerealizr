@@ -38,4 +38,30 @@ describe('CamelcaseSerializer', () => {
       });
     });
   });
+
+  describe('when object to serialize has nested objects', () => {
+    const nestedObject = {
+      some_key: 100,
+      my_family: {
+        my_father: 'John',
+        my_mother: 'Johanna',
+        my_daughters: { first_daughter: 'Carla', second_daughter: 'Myriam' }
+      }
+    };
+
+    describe('when a the object has nested objects and no descriptor', () => {
+      const serializer = new CamelcaseSerializer();
+
+      it('maps all nested keys as camelcase', () => {
+        expect(serializer.serialize(nestedObject)).toEqual({
+          someKey: 100,
+          myFamily: {
+            myFather: 'John',
+            myMother: 'Johanna',
+            myDaughters: { firstDaughter: 'Carla', secondDaughter: 'Myriam' }
+          }
+        });
+      });
+    });
+  });
 });

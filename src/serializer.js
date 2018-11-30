@@ -10,7 +10,7 @@ class Serializer {
   checkValidValue(field) {
     if (field === null || typeof field !== 'object' || Object.keys(field).length > 1) {
       throw new SerializerError(
-        'Serializer mapper function values must return an non null object with only one key'
+        `Serializer mapper function values must return an non null object with only one key, instead found: ${field}`
       );
     }
   }
@@ -30,8 +30,8 @@ class Serializer {
   }
 
   serialize(object) {
-    if (typeof object !== 'object') {
-      throw new SerializerError('Value to serialize must be an object');
+    if (typeof object !== 'object' || object.constructor === Array) {
+      throw new SerializerError(`Value to serialize must be an object, instead found the value: ${object}`);
     }
 
     return Object.keys(object).reduce((accumulator, key) => {
@@ -52,7 +52,9 @@ class Serializer {
       } else if (typeof transform === 'string') {
         this.transformWithString(accumulator, transform, value);
       } else {
-        throw new SerializerError('Serializer mapper values must be either a string or a function');
+        throw new SerializerError(
+          `Serializer mapper values must be either a string or a function, instead found: ${typeof transform}`
+        );
       }
 
       return accumulator;

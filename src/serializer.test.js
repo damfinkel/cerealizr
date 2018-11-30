@@ -137,4 +137,18 @@ describe('Serializer', () => {
       expect(() => serializer.serialize(value)).toThrow(SerializerError);
     });
   });
+
+  describe('when value to be serialized is an array', () => {
+    const value = [1, 2, 3];
+
+    const descriptor = {
+      id: () => ({ key1: 10, key2: 20 })
+    };
+
+    const serializer = new Serializer({ descriptor });
+
+    it('throws a SerializerError', () => {
+      expect(() => serializer.serialize(value)).toThrow(SerializerError);
+    });
+  });
 });
