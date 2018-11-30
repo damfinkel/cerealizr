@@ -1,10 +1,10 @@
-const Serializer = require('./src/serializer');
-const SerializerError = require('./src/serializerError');
-const KeySerializer = require('./src/keySerializer');
-const CamelcaseSerializer = require('./src/camelcaseSerializer');
-const SnakecaseSerializer = require('./src/snakecaseSerializer');
+const Serializer = require('./serializer');
+const SerializerError = require('./serializerError');
+const KeySerializer = require('./keySerializer');
+const CamelcaseSerializer = require('./camelcaseSerializer');
+const SnakecaseSerializer = require('./snakecaseSerializer');
 
-const { setCamelcaseKey, setSnakecaseKey, setValue } = require('./src/utils');
+const { setCamelcaseKey, setSnakecaseKey, setValue } = require('./utils');
 
 module.exports.Serializer = Serializer;
 module.exports.SerializerError = SerializerError;
