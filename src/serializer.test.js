@@ -134,21 +134,45 @@ describe('Serializer', () => {
     const serializer = new Serializer({ descriptor });
 
     it('throws a SerializerError', () => {
-      expect(() => serializer.serialize(value)).toThrow(SerializerError);
+      expect(serializer.serialize(value)).toEqual(10);
     });
   });
 
-  describe('when value to be serialized is an array', () => {
-    const value = [1, 2, 3];
+  describe('when value to be serialized is an array of objects', () => {
+    const someArray = [
+      { prop1: 'value1' },
+      { prop1: 'value2', prop2: { key1: 'value1', key2: 'value2' } },
+      { prop3: [1, 2, 3] }
+    ];
 
     const descriptor = {
-      id: () => ({ key1: 10, key2: 20 })
+      prop1: 'propOne',
+      prop2: (_, value) => ({ propTwo: value })
     };
 
-    const serializer = new Serializer({ descriptor });
+    const serializer = new Serializer({ descriptor, mapAllValues: true });
 
-    it('throws a SerializerError', () => {
-      expect(() => serializer.serialize(value)).toThrow(SerializerError);
+    it('maps the array using the descriptor in each element', () => {
+      expect(serializer.serialize(someArray)).toEqual([
+        { propOne: 'value1' },
+        { propOne: 'value2', propTwo: { key1: 'value1', key2: 'value2' } },
+        { prop3: [1, 2, 3] }
+      ]);
+    });
+  });
+
+  describe('when value to be serialized is an array of array of objects', () => {
+    const someArray = [[{ prop1: 'value1' }, { prop2: 'value2' }]];
+
+    const descriptor = {
+      prop1: 'propOne',
+      prop2: (_, value) => ({ propTwo: value })
+    };
+
+    const serializer = new Serializer({ descriptor, mapAllValues: true });
+
+    it('maps the array using the descriptor in each element', () => {
+      expect(serializer.serialize(someArray)).toEqual([[{ propOne: 'value1' }, { propTwo: 'value2' }]]);
     });
   });
 });

@@ -64,4 +64,13 @@ describe('CamelcaseSerializer', () => {
       });
     });
   });
+
+  describe('when a the object to map is an array', () => {
+    const array = [{ key_one: 'value_one' }, { key_two: 'value_two' }];
+    const serializer = new CamelcaseSerializer({ descriptor: { key_two: v => `${v}_2` } });
+
+    it('maps the array as camelcase in each element', () => {
+      expect(serializer.serialize(array)).toEqual([{ keyOne: 'value_one' }, { keyTwo: 'value_two_2' }]);
+    });
+  });
 });

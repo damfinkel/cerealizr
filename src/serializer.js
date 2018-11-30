@@ -1,3 +1,5 @@
+import { isArray, isNonArrayObject } from './utils';
+
 const SerializerError = require('./serializerError');
 
 class Serializer {
@@ -29,13 +31,17 @@ class Serializer {
     object[string] = value;
   }
 
-  serialize(object) {
-    if (typeof object !== 'object' || object.constructor === Array) {
-      throw new SerializerError(`Value to serialize must be an object, instead found the value: ${object}`);
+  serialize(element) {
+    if (isArray(element)) {
+      return element.map(innerElement => this.serialize(innerElement));
     }
 
-    return Object.keys(object).reduce((accumulator, key) => {
-      const value = object[key];
+    if (!isNonArrayObject(element)) {
+      return element;
+    }
+
+    return Object.keys(element).reduce((accumulator, key) => {
+      const value = element[key];
       const transform = this.descriptor && this.descriptor[key];
 
       // If no transform is given, it'll only return the key when this.mapAllValues = true

@@ -38,4 +38,39 @@ describe('SnakecaseSerializer', () => {
       });
     });
   });
+
+  describe('when object to serialize has nested objects', () => {
+    const nestedObject = {
+      someKey: 100,
+      myFamily: {
+        myFather: 'John',
+        myMother: 'Johanna',
+        myDaughters: { firstDaughter: 'Carla', secondDaughter: 'Myriam' }
+      }
+    };
+
+    describe('when a the object has nested objects and no descriptor', () => {
+      const serializer = new SnakecaseSerializer();
+
+      it('maps all nested keys as camelcase', () => {
+        expect(serializer.serialize(nestedObject)).toEqual({
+          some_key: 100,
+          my_family: {
+            my_father: 'John',
+            my_mother: 'Johanna',
+            my_daughters: { first_daughter: 'Carla', second_daughter: 'Myriam' }
+          }
+        });
+      });
+    });
+  });
+
+  describe('when a the object to map is an array', () => {
+    const array = [{ keyOne: 'value_one' }, { keyTwo: 'value_two' }];
+    const serializer = new SnakecaseSerializer({ descriptor: { keyTwo: v => `${v}_2` } });
+
+    it('maps the array as camelcase in each element', () => {
+      expect(serializer.serialize(array)).toEqual([{ key_one: 'value_one' }, { key_two: 'value_two_2' }]);
+    });
+  });
 });
