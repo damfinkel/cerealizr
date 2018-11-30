@@ -1,6 +1,6 @@
 {
   "name": "cerealizr",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A simple framework to easily transform your data to a useful format",
   "main": "src/index.js",
   "scripts": {
