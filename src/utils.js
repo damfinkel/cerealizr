@@ -1,22 +1,20 @@
-const toCamelcase = require('lodash.camelcase');
-const toSnakecase = require('lodash.snakecase');
+import toCamelcase from 'lodash.camelcase';
+import toSnakecase from 'lodash.snakecase';
 
 // Private functions
 
-const isArray = value => value.constructor === Array;
+export const isArray = value => value.constructor === Array;
 
-module.exports.isArray = isArray;
-
-module.exports.isNonArrayObject = value => typeof value === 'object' && !isArray(value);
+export const isNonArrayObject = value => typeof value === 'object' && !isArray(value);
 
 // Public functions
 
-module.exports.setValue = value => key => ({ [key]: value });
+export const setValue = value => key => ({ [key]: value });
 
-module.exports.setCamelcaseKey = (transformValue = value => value) => (key, value) => ({
+export const setCamelcaseKey = (transformValue = value => value) => (key, value) => ({
   [toCamelcase(key)]: transformValue(value)
 });
 
-module.exports.setSnakecaseKey = (transformValue = value => value) => (key, value) => ({
+export const setSnakecaseKey = (transformValue = value => value) => (key, value) => ({
   [toSnakecase(key)]: transformValue(value)
 });

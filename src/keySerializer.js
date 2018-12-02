@@ -1,4 +1,5 @@
-const Serializer = require('./serializer');
+import Serializer from './serializer';
+import { isNonArrayObject } from '../build/utils';
 
 class KeySerializer extends Serializer {
   constructor({ descriptor, keyTransform = key => key } = { descriptor: null, keyTransform: key => key }) {
@@ -7,11 +8,11 @@ class KeySerializer extends Serializer {
   }
 
   getTransformedField(transform, key, value) {
-    if (typeof value === 'object' && value.constructor !== Array) {
+    if (value && isNonArrayObject(value)) {
       return { [this.keyTransform(key)]: this.serialize(value) };
     }
     return { [this.keyTransform(key)]: transform(value) };
   }
 }
 
-module.exports = KeySerializer;
+export default KeySerializer;

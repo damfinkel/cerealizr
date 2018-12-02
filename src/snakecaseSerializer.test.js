@@ -1,4 +1,4 @@
-const SnakecaseSerializer = require('./snakecaseSerializer');
+import SnakecaseSerializer from './snakecaseSerializer';
 
 describe('SnakecaseSerializer', () => {
   const someObject = {

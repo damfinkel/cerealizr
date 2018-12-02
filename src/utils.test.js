@@ -1,5 +1,5 @@
-const { setValue, setCamelcaseKey } = require('./utils');
-const Serializer = require('./serializer');
+import { setValue, setCamelcaseKey } from './utils';
+import Serializer from './serializer';
 
 describe('setValue', () => {
   const someObject = {

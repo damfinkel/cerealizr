@@ -1,5 +1,5 @@
-const KeySerializer = require('./keySerializer');
-const camelcase = require('lodash.camelcase');
+import KeySerializer from './keySerializer';
+import camelcase from 'lodash.camelcase';
 
 class CamelcaseSerializer extends KeySerializer {
   constructor({ descriptor } = {}) {
@@ -7,4 +7,4 @@ class CamelcaseSerializer extends KeySerializer {
   }
 }
 
-module.exports = CamelcaseSerializer;
+export default CamelcaseSerializer;

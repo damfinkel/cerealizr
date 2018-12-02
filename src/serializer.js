@@ -1,6 +1,6 @@
 import { isArray, isNonArrayObject } from './utils';
 
-const SerializerError = require('./serializerError');
+import SerializerError from './serializerError';
 
 class Serializer {
   constructor({ descriptor, defaultTransform = (key, value) => ({ [key]: value }), mapAllValues = false }) {
@@ -68,4 +68,4 @@ class Serializer {
   }
 }
 
-module.exports = Serializer;
+export default Serializer;

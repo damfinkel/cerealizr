@@ -1,5 +1,5 @@
-const KeySerializer = require('./keySerializer');
-const snakecase = require('lodash.snakecase');
+import KeySerializer from './keySerializer';
+import snakecase from 'lodash.snakecase';
 
 class SnakecaseSerializer extends KeySerializer {
   constructor({ descriptor } = {}) {
@@ -7,4 +7,4 @@ class SnakecaseSerializer extends KeySerializer {
   }
 }
 
-module.exports = SnakecaseSerializer;
+export default SnakecaseSerializer;

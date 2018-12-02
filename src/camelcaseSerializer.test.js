@@ -1,4 +1,4 @@
-const CamelcaseSerializer = require('./camelcaseSerializer');
+import CamelcaseSerializer from './camelcaseSerializer';
 
 describe('CamelcaseSerializer', () => {
   const someObject = {
