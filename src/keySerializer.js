@@ -1,5 +1,4 @@
 import Serializer from './serializer';
-import { isNonArrayObject } from '../build/utils';
 
 class KeySerializer extends Serializer {
   constructor({ descriptor, keyTransform = key => key } = { descriptor: null, keyTransform: key => key }) {
@@ -8,8 +7,8 @@ class KeySerializer extends Serializer {
   }
 
   getTransformedField(transform, key, value) {
-    if (value && isNonArrayObject(value)) {
-      return { [this.keyTransform(key)]: this.serialize(value) };
+    if (value && typeof value === 'object') {
+      return { [this.keyTransform(key)]: this.serialize(transform(value)) };
     }
     return { [this.keyTransform(key)]: transform(value) };
   }
