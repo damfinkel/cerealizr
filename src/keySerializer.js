@@ -7,7 +7,7 @@ class KeySerializer extends Serializer {
   }
 
   getTransformedField(transform, key, value) {
-    if (value && typeof value === 'object') {
+    if (value && typeof value === 'object' && !(value instanceof Date)) {
       return { [this.keyTransform(key)]: this.serialize(transform(value)) };
     }
     return { [this.keyTransform(key)]: transform(value) };
