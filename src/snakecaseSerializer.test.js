@@ -73,4 +73,16 @@ describe('SnakecaseSerializer', () => {
       expect(serializer.serialize(array)).toEqual([{ key_one: 'value_one' }, { key_two: 'value_two_2' }]);
     });
   });
+
+  describe('when contains a date object', () => {
+    const date = new Date();
+    const object = { anyDate: date };
+    const serializer = new SnakecaseSerializer();
+
+    it('returns date object as camelcase', () => {
+      expect(serializer.serialize(object)).toEqual({
+        any_date: date
+      });
+    });
+  });
 });
