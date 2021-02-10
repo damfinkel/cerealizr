@@ -24,7 +24,7 @@ describe('setCamelcaseKey', () => {
   };
 
   const descriptor = {
-    snake_case_key: setCamelcaseKey(value => value + 100)
+    snake_case_key: setCamelcaseKey((value) => value + 100)
   };
 
   const serializer = new Serializer({ descriptor });

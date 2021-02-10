@@ -19,7 +19,7 @@ module.exports = {
     __DEV__: true
   },
   rules: {
-    'prettier/prettier': ['error', { printWidth: 110, singleQuote: true }],
+    'prettier/prettier': ['error', { printWidth: 110, singleQuote: true, trailingComma: 'none' }],
     'no-invalid-this': 'off',
     'no-return-assign': 'error',
     'no-param-reassign': 'error',
