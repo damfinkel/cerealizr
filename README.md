@@ -2,17 +2,17 @@
 
 A simple library to transform objects.
 
-# Installation
+## Installation
 
 ```
 $ npm i cerealizr # or yarn add cerealizr
 ```
 
-# What is it good for?
+## What is it good for?
 
 Cerealizr provides a Serializer class which allows you to transform objects into whatever you want. It's specially useful for transforming API requests or responses into nicely formatted and useful data to use in your app.
 
-# Basic Usage
+## Basic Usage
 
 ```
 const Serializer = require('cerealizr');
@@ -47,7 +47,7 @@ Result:
 */
 ```
 
-# Classes and functions
+## Classes and functions
 
 ### Serializer
 
@@ -119,3 +119,28 @@ const descriptor = { id: 'ID', some_key: setCamelcaseKey(value => value + 100) }
 You can define your own serializers! Both CamelcaseSerializer and SnakecaseSerializer extend KeySerializer, which in turn extends Serializer defining a function to map the key. You can extend KeySerializer to define how to map keys, just as those serializers do.
 
 If you want even more custom behaviour, you can even extend Serializer and override its methods.
+
+
+## Licence
+
+MIT License
+
+Copyright (c) 2021 damfinkel
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
