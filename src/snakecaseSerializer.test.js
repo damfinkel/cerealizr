@@ -24,7 +24,7 @@ describe('SnakecaseSerializer', () => {
   describe('when a descriptor is passed', () => {
     const descriptor = {
       firstName: 'name',
-      nickNames: value => value.map(nick => nick.toUpperCase())
+      nickNames: (value) => value.map((nick) => nick.toUpperCase())
     };
 
     const serializer = new SnakecaseSerializer({ descriptor });
@@ -67,7 +67,7 @@ describe('SnakecaseSerializer', () => {
 
   describe('when a the object to map is an array', () => {
     const array = [{ keyOne: 'value_one' }, { keyTwo: 'value_two' }];
-    const serializer = new SnakecaseSerializer({ descriptor: { keyTwo: v => `${v}_2` } });
+    const serializer = new SnakecaseSerializer({ descriptor: { keyTwo: (v) => `${v}_2` } });
 
     it('maps the array as camelcase in each element', () => {
       expect(serializer.serialize(array)).toEqual([{ key_one: 'value_one' }, { key_two: 'value_two_2' }]);

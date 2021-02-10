@@ -33,7 +33,7 @@ class Serializer {
 
   serialize(element) {
     if (isArray(element)) {
-      return element.map(innerElement => this.serialize(innerElement));
+      return element.map((innerElement) => this.serialize(innerElement));
     }
 
     if (!isNonArrayObject(element)) {
